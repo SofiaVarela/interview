@@ -97,32 +97,4 @@ describe("coTest", function () {
     });
   });
 
-  describe('When the product price is validated', () => {
-    it('should return 0 if the price is negative', () => {
-      const coTest = new CarInsurance([new Product('Full Coverage', 10, -5)]);
-      const price = coTest.validationPrice(-5);
-      expect(price).equal(0);
-    });
-    it('should return 0 if the price is 0', () => {
-      const coTest = new CarInsurance([new Product('Full Coverage', 10, 0)]);
-      const price = coTest.validationPrice(0);
-      expect(price).equal(0);
-    });
-    it('should return the price if the price is between 0 and 50', () => {
-      const coTest = new CarInsurance([new Product('Full Coverage', 10, 30)]);
-      const price = coTest.validationPrice(30);
-      expect(price).equal(30);
-    });
-    it('should return 50 if the price is 50', () => {
-      const coTest = new CarInsurance([new Product('Full Coverage', 10, 50)]);
-      const price = coTest.validationPrice(50);
-      expect(price).equal(50);
-    });
-    it('should return 50 if the price is greater than 50', () => {
-      const coTest = new CarInsurance([new Product('Full Coverage', 10, 51)]);
-      const price = coTest.validationPrice(51);
-      expect(price).equal(50);
-    });
-  });
-
 });

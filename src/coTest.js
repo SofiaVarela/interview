@@ -1,6 +1,3 @@
-const maxPrice = 50;
-const minPrice = 0;
-
 class Product {
   constructor(name, sellIn, price) {
     this.name = name;
@@ -13,7 +10,6 @@ class CarInsurance {
   constructor(products = []) {
     this.products = products;
   }
-
   updatePrice() {
     for (var i = 0; i < this.products.length; i++) {
       if (this.products[i].name != 'Full Coverage' && this.products[i].name != 'Special Full Coverage') {
@@ -63,11 +59,6 @@ class CarInsurance {
 
     return this.products;
   }
-
-  validationPrice(price) {
-    return price <= minPrice ? minPrice : price >= maxPrice ? maxPrice : price;
-  }
-
 }
 
 module.exports = {
