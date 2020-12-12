@@ -2,7 +2,7 @@ const FULL_COVERAGE = 'Full Coverage';
 const MEGA_COVERAGE = 'Mega Coverage';
 const SPECIAL_FULL_COVERAGE = 'Special Full Coverage';
 const SUPER_SALE = 'Super Sale';
-const OTHERS = 'Otros productos'
+const OTHERS = ('Low Coverage', 'Medium Coverage')
 
 module.exports = {
   FULL_COVERAGE,
