@@ -40,6 +40,11 @@ describe("CarInsurance Test", function () {
       const products = coTest.updatePrice();
       expect(products[0].price).equal(12);
     });
+    it('should increase the price by 2 when the sellIn is 0', () => {
+      const coTest = new CarInsurance([new Product(FULL_COVERAGE, 0, 10)]);
+      const products = coTest.updatePrice();
+      expect(products[0].price).equal(12);
+    });
   });
 
   describe('When the product is Special Full Coverage', () => {
