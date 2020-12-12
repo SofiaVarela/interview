@@ -4,7 +4,9 @@
   "description": "ComparaOnline Software Engineer Test",
   "main": "index.js",
   "scripts": {
-    "test": "mocha spec/*.js"
+    "test": "mocha test/*.js",
+    "test-report": "nyc --reporter=text mocha",
+    "after-30-days": "node ./src/after-30-days.js"
   },
   "repository": {
     "type": "git",
@@ -16,14 +18,20 @@
     "software",
     "engineer"
   ],
-  "author": "ComparaOnline",
-  "license": "MIT",
+  "author": {
+    "email": "sofiamarielavarelamerino@gmail.com",
+    "name": "Interview coding test for Compara"
+  },
   "bugs": {
     "url": "https://github.com/comparaonline/test-software-engineer/issues"
   },
   "homepage": "https://github.com/comparaonline/test-software-engineer#readme",
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^4.0.1"
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2"
   }
 }
