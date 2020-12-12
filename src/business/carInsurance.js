@@ -1,5 +1,3 @@
-const maxPrice = 50;
-const minPrice = 0;
 
 class CarInsurance {
   constructor(products = []) {
@@ -55,11 +53,6 @@ class CarInsurance {
 
     return this.products;
   }
-
-  validationPrice(price) {
-    return price <= minPrice ? minPrice : price >= maxPrice ? maxPrice : price;
-  }
-
 }
 
 module.exports = {
