@@ -1,3 +1,9 @@
+const { FULL_COVERAGE, MEGA_COVERAGE, SPECIAL_FULL_COVERAGE, SUPER_SALE } = require('../../config/carInsurances');
+const megaCoverage = require('./products/megaCoverage');
+const fullCoverage = require('./products/fullCoverage');
+const specialFullCoverage = require('./products/specialFullCoverage');
+const superSale = require('./products/superSale');
+const others = require('./products/others');
 
 class CarInsurance {
   constructor(products = []) {
@@ -5,56 +11,34 @@ class CarInsurance {
   }
 
   updatePrice() {
-    for (var i = 0; i < this.products.length; i++) {
-      if (this.products[i].name != 'Full Coverage' && this.products[i].name != 'Special Full Coverage') {
-        if (this.products[i].price > 0) {
-          if (this.products[i].name != 'Mega Coverage') {
-            this.products[i].price = this.products[i].price - 1;
-          }
-        }
-      } else {
-        if (this.products[i].price < 50) {
-          this.products[i].price = this.products[i].price + 1;
-          if (this.products[i].name == 'Special Full Coverage') {
-            if (this.products[i].sellIn < 11) {
-              if (this.products[i].price < 50) {
-                this.products[i].price = this.products[i].price + 1;
-              }
-            }
-            if (this.products[i].sellIn < 6) {
-              if (this.products[i].price < 50) {
-                this.products[i].price = this.products[i].price + 1;
-              }
-            }
-          }
-        }
+    this.products.map((product, key) => {
+      switch (product.name) {
+        case FULL_COVERAGE:
+          product.price = fullCoverage.getValues(product.price, product.sellIn).price;
+          product.sellIn = fullCoverage.getValues(product.price, product.sellIn).sellIn;
+          break;
+        case MEGA_COVERAGE:
+          product.price = megaCoverage.getValues(product.sellIn).price;
+          product.sellIn = megaCoverage.getValues(product.sellIn).sellIn;
+          break;
+        case SPECIAL_FULL_COVERAGE:
+          product.price = specialFullCoverage.getValues(product.price, product.sellIn).price;
+          product.sellIn = specialFullCoverage.getValues(product.price, product.sellIn).sellIn;
+          break;
+        case SUPER_SALE:
+          product.price = superSale.getValues(product.price, product.sellIn).price;
+          product.sellIn = superSale.getValues(product.price, product.sellIn).sellIn;
+          break;
+        default:
+          product.price = others.getValues(product.price, product.sellIn).price;
+          product.sellIn = others.getValues(product.price, product.sellIn).sellIn;
+          break;
       }
-      if (this.products[i].name != 'Mega Coverage') {
-        this.products[i].sellIn = this.products[i].sellIn - 1;
-      }
-      if (this.products[i].sellIn < 0) {
-        if (this.products[i].name != 'Full Coverage') {
-          if (this.products[i].name != 'Special Full Coverage') {
-            if (this.products[i].price > 0) {
-              if (this.products[i].name != 'Mega Coverage') {
-                this.products[i].price = this.products[i].price - 1;
-              }
-            }
-          } else {
-            this.products[i].price = this.products[i].price - this.products[i].price;
-          }
-        } else {
-          if (this.products[i].price < 50) {
-            this.products[i].price = this.products[i].price + 1;
-          }
-        }
-      }
-    }
 
+      this.products[key] = product;
+    });
     return this.products;
   }
 }
 
-module.exports = {
-  CarInsurance
-}
+module.exports = { CarInsurance }
