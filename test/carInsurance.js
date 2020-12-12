@@ -1,11 +1,10 @@
 const expect = require('chai').expect;
-const coTest = require('../src/coTest');
+const { CarInsurance } = require('../src/business/carInsurance');
+const { Product } = require('../src/business/product');
 
 const { FULL_COVERAGE, MEGA_COVERAGE, SPECIAL_FULL_COVERAGE, SUPER_SALE, OTHERS } = require('../config/carInsurances');
-const CarInsurance = coTest.CarInsurance;
-const Product = coTest.Product;
 
-describe("coTest", function () {
+describe("CarInsurance Test", function () {
 
   describe('When the product is Mega Coverage', () => {
     it('should keep the same price', () => {
